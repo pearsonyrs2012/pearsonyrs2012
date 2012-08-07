@@ -12,5 +12,6 @@ while(<$file>) {
 	my $category = $1;
 	$categorys{$category}++;
 }
-print Dumper \%categorys;
-}
+Dumper \%categorys;
+};
+dance;
