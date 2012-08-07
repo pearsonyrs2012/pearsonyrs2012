@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use LWP::UserAgent;
 use Dancer ":syntax";
+set port => $ARGV[0];
 #use Data::Dumper;
 get '/:lat/:long/' => sub {
 my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file

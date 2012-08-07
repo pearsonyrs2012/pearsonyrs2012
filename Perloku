@@ -1,2 +1,2 @@
 #!/bin/sh
-./lib/parse.pl daemon --listen http://*:$PORT
+./lib/parse.pl $PORT
