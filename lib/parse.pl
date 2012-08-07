@@ -6,7 +6,7 @@ use Dancer ":syntax";
 set port => $ARGV[0];
 #use Data::Dumper;
 
-get '/' => sub {
+get '/index.html' => sub {
 	return 'hello world';
 }
 
