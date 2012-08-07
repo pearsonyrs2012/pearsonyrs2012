@@ -1,7 +1,6 @@
 use strict;
 use warnings;
-use Dancer;
-use Data::Dumper;
+use Dancer ":syntax";
 get '/:lat,:long' => sub {
 my $filepath = '51.4971,-0.1382.13827'; #get file
 #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
@@ -12,6 +11,6 @@ while(<$file>) {
 	my $category = $1;
 	$categorys{$category}++;
 }
-Dumper \%categorys;
+to_json \%categorys;
 };
 dance;
