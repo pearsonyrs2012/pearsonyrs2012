@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'yrs2012',
-    AUTHOR              => q{YOUR NAME <youremail@example.com>},
+    AUTHOR              => q{Tycho Bickerstaff <work.tycho@gmail.com>},
     VERSION_FROM        => 'lib/yrs2012.pm',
     ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
@@ -14,6 +14,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More' => 0,
         'YAML'       => 0,
+        'JSON'       => 0,
         'Dancer'     => 1.3098,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
