@@ -1,13 +1,21 @@
 use strict;
 use warnings;
-
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-  NAME         => 'app.pl',
-  VERSION      => '1.0',
-  AUTHOR       => 'Tycho Bickerstaff <work.tycho@gmail.com>',
-  EXE_FILES    => ['lib/main.pl'],
-  PREREQ_PM    => {'Dancer' => '1.0'},
-  test         => {TESTS => 't/*.t'}
+    NAME                => 'pearsonyrs2012',
+    AUTHOR              => q{YOUR NAME <youremail@example.com>},
+    VERSION_FROM        => 'lib/pearsonyrs2012.pm',
+    ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
+    ($ExtUtils::MakeMaker::VERSION >= 6.3002
+      ? ('LICENSE'=> 'perl')
+      : ()),
+    PL_FILES            => {},
+    PREREQ_PM => {
+        'Test::More' => 0,
+        'YAML'       => 0,
+        'Dancer'     => 1.3098,
+    },
+    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean               => { FILES => 'pearsonyrs2012-*' },
 );

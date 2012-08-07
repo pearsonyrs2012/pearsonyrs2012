@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/xsl.xsl"?>
+
+<rss version="2.0"
+ xmlns:blogChannel="http://backend.userland.com/blogChannelModule"
+ xmlns:georss="http://www.georss.org/georss"
+>
+
+<channel>
+<title>New local problems on FixMyStreet</title>
+<link>http://www.fixmystreet.com/?lat=50.031488;lon=0.834279;d=2</link><uri>http://www.fixmystreet.com/rss/l/50.031488,0.834279/2</uri>
+<description>The latest local problems reported by users</description>
+<language>en-gb</language>
+
+</channel>
+</rss>
