@@ -27,7 +27,6 @@ function handle_geolocation_query(position){
 					$("#testlevelimg").src = "images/icons/high.png";
 					$("#testlevelimg").alt = "High Level";
 				}
-			}
             }else{
 				li.append('<p>Low</p>'); 
 				if (name == "pizza") {
