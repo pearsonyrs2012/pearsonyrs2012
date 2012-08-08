@@ -13,9 +13,22 @@ function handle_geolocation_query(position){
       success: function(response) { 
         console.log("success");
         $(response).each(function(index) {
+          
+            // get values from response
             var level = $(this)[0]["level"]
             var name = $(this)[0]["name"]
-            var pressentaionname = $(this)[0]["pressentaionname"]            
+            var pressentaionname = $(this)[0]["pressentaionname"]
+            
+            //add to page
+            li = $('<li></li>')
+           if(level >= 0.5){
+             li.append('<p>High</p>')
+             
+            }else{
+              li.append('<p>Low</p>')  
+            }
+            li.append(name)            
+            $("#test").append(li)
             
         });
       },
