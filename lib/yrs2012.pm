@@ -10,7 +10,7 @@ get '/geo' => sub {
     send_file '/geo.html';
 };
 
-get '/api/allcats/numbers/:lat/:long/' => sub {
+get '/api/cats/:lat/:long/' => sub {
 my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
 #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
 my $ua = LWP::UserAgent->new;
@@ -33,7 +33,9 @@ to_json \%categorys;
 
 };
 
-get '/api/allcats/levels/:lat/:long/' => sub {
+
+get '/api/overview/:lat/:long/' => sub {
+my $crossover;
 my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
 #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
 my $ua = LWP::UserAgent->new;
@@ -51,8 +53,16 @@ while(defined($line =shift(@lines))) {
 	my $category = $1;
 	$categorys{$category}++;
 }
+my @overview;
+for $category (keys $category) {
+	my %item;
+	$item{name} = lc($category);
+	$item{pressentaionname} = $category;
+	$item{level} = $categorys{$category} > $crossover;
+	push @overview, %item;
+}
 
-to_json \%categorys;
+to_json \@overview;
 
 };
 
