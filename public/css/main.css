@@ -63,7 +63,13 @@ margin-align:left;
 #maincontent {
 float:left;
 overflow: scroll;
+width:330px;
 }
+
+#maincontent iframe {
+margin-left: 10px;
+}
+
 
 
 #container {
@@ -80,4 +86,10 @@ width:50px;
 #map {
 width: 400px;
 padding-left: 600px;
+}
+
+#containertwo {
+width: 582px;
+border: 1px;
+margin-left:200px;
 }
