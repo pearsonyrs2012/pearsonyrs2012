@@ -68,7 +68,7 @@ for $category (keys %categories) {
 
 sub pizza {
 	my ($lat,$long) = @_;
-	my $url = 'https://maps.googleapis.com/maps/api/place/search/json?location='.$lat.','.$long.'&radius=2000&types=food&sensor=true&key=AIzaSyDdTCCT8WlzCIzqbmfWsTlWGZ6N5UFQ_Lg&keyword=pizza&country=UK';
+	my $url = 'https://maps.googleapis.com/maps/api/place/search/json?location='.$lat.','.$long.'&radius=2000&types=food&sensor=true&key=AIzaSyDdTCCT8WlzCIzqbmfWsTlWGZ6N5UFQ_Lg&keyword=pizza';
 	my $json = getfile($url);
 	return $json if defined($json->{error});
 	warn "got json:$json->{content}";
@@ -85,10 +85,10 @@ sub getfile {
 my ($url) = @_;
 warn "getting file $url \n";
 my $ua = LWP::UserAgent->new;
-#$ua->timeout(10);
+$ua->timeout(10);
 $ua->env_proxy;
 my $response = $ua->get($url);
-warn "failed to download file" && return {error => "unable to download"} if not $response->is_success;
+warn "failed to download file" && return {error => "unable to download:$response->status_line"} if not $response->is_success;
 my $content = $response->content;
 warn "invalid url $url" && return {error => "invalid url $url"} unless defined $content;
 warn "got file $url \n";
