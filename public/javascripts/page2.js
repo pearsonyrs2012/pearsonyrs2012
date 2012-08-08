@@ -12,7 +12,8 @@ function handle_geolocation_query(position){
           'Lon: ' + position.coords.longitude);
 	$.ajax({
 		url: "api/overview/" + position.coords.latitude + "/" + position.coords.longitude + "/",
-		success: function(response) { 		alert("done");
+		dataType: "json",
+		success: function(response) { console.log(response)		;
 		},
 		error: function(xhr,text,errort) {console.log(xhr);
 										console.log(text);
