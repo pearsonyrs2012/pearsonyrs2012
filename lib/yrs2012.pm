@@ -4,7 +4,7 @@ use LWP::UserAgent;
 our $VERSION = '0.1';
 
 get '/' => sub {
-	send_file '/index.html';
+	send_file '/HomepageWithIcons.html';
 };
 get '/geo' => sub {
     send_file '/geo.html';
