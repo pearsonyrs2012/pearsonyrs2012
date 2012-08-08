@@ -3,8 +3,11 @@ use Dancer ':syntax';
 use LWP::UserAgent;
 our $VERSION = '0.1';
 
+get '/geo' => sub {
+	pass;
+};
 get '/' => sub {
-    template 'index';
+    send_file '/geo.html';
 };
 
 get '/api/:lat/:long/' => sub {
