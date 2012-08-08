@@ -60,7 +60,7 @@ for $category (keys %categories) {
 	$item{name} = lc($category);
 	$item{pressentaionname} = $category;
 	$item{level} = $categories{$category} > $crossover;
-	push @overview, %item;
+	push @overview, \%item;
 }
 
 to_json \@overview;
