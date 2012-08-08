@@ -1,7 +1,18 @@
 #links {
 float:left;
-width:200px;
+width:150px;
 border:1px solid black;
+}
+
+li {
+	list-style:none;
+	margin-left: 0;
+
+}
+
+ul{
+	margin-left: 0;
+	padding-left: 0;
 }
 
 #firstcolumn {
@@ -56,7 +67,7 @@ overflow: scroll;
 
 
 #container {
-width:400px;
+width:582px;
 border:1px;
 }
 
