@@ -1,0 +1,72 @@
+#links {
+float:left;
+width:200px;
+border:1px solid black;
+}
+
+#firstcolumn {
+float:left;
+width:130px;
+border:1px solid black;
+margin-left:10px;
+}
+
+
+#secondcolumn {
+float:right;
+width:130px;
+border:1px solid black;
+}
+
+
+#thirdcolumn {
+float:right;
+width:130px;
+border:1px solid black;
+}
+
+
+#fourthcolumn {
+float:left;
+width:130px;
+border:1px solid black;
+}
+
+.boxleft {
+float:left;
+clear:left;
+width:130px;
+border:1px solid black;
+margin-left:10px;
+margin-align:left;
+}
+
+
+.boxright {
+float:left;
+width:130px;
+border:1px solid black;
+margin-align:left;
+}
+
+#maincontent {
+float:left;
+overflow: scroll;
+}
+
+
+#container {
+width:400px;
+border:1px;
+}
+
+
+#secondcontainer {
+width:50px;
+}
+
+
+#map {
+width: 400px;
+padding-left: 600px;
+}

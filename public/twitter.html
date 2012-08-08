@@ -1,0 +1,51 @@
+<!DOCTYPE html>  
+<html>  
+  <head>  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  </head>  
+  <body>  
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+jQuery(window).ready(function(){  
+initiate_geolocation()	
+});  
+
+function initiate_geolocation() {  
+    navigator.geolocation.getCurrentPosition(handle_geolocation_query);  
+} 
+
+function handle_geolocation_query(position){  
+		
+	var mysearch= 'geocode:'+ position.coords.latitude +','+ position.coords.longitude +',2mi'
+	
+		new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: mysearch,
+  interval: 30000,
+  title: 'twitter',
+  subject: 'ACTIVITY',
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#8ec1da',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#1985b5'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: true,
+    live: true,
+    behavior: 'default'
+  }
+}).render().start();
+}
+</script>
+  </body>  
+</html>
