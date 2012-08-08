@@ -86,11 +86,12 @@ my $ua = LWP::UserAgent->new;
 $ua->timeout(10);
 $ua->env_proxy;
 my $response = $ua->get($url);
-return {error => "unable to download"} if not $response->is_success;
+warn "failed to download file" && return {error => "unable to download"} if not $response->is_success;
 my $content = $response->content;
-return {error => "invalid url $url"} unless defined $content;
-return {content => $content};
+warn "invalid url $url" && return {error => "invalid url $url"} unless defined $content;
 warn "got file $url \n";
+return {content => $content};
+
 }
 
 true;
