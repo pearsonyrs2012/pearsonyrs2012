@@ -23,7 +23,6 @@ function handle_geolocation_query(position){
             li = $('<li></li>')
            if(level >= 0.5){
              li.append('<p>High</p>')
-             
             }else{
               li.append('<p>Low</p>')  
             }
