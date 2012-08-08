@@ -12,7 +12,7 @@ li {
 
 ul{
 	margin-left: 0;
-	padding-left: 0;
+	padding-left: 10px;
 }
 
 #firstcolumn {
@@ -43,6 +43,7 @@ width:130px;
 border:1px solid black;
 }
 
+
 .boxleft {
 float:left;
 clear:left;
@@ -63,7 +64,13 @@ margin-align:left;
 #maincontent {
 float:left;
 overflow: scroll;
+width:330px;
 }
+
+#maincontent iframe {
+margin-left: 10px;
+}
+
 
 
 #container {
@@ -80,4 +87,10 @@ width:50px;
 #map {
 width: 400px;
 padding-left: 600px;
+}
+
+#containertwo {
+width: 582px;
+border: 1px;
+margin-left:200px;
 }
