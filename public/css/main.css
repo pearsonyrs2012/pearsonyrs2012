@@ -12,7 +12,7 @@ li {
 
 ul{
 	margin-left: 0;
-	padding-left: 0;
+	padding-left: 10px;
 }
 
 #firstcolumn {
@@ -42,6 +42,7 @@ float:left;
 width:130px;
 border:1px solid black;
 }
+
 
 .boxleft {
 float:left;
