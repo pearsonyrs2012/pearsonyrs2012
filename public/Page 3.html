@@ -4,7 +4,7 @@
 <style>
 #links {
 float:left;
-width:100px;
+width:200px;
 border:1px solid black;
 }
 #firstcolumn {
@@ -27,17 +27,27 @@ border:1px solid black;
 float:right;
 width:130px;
 border:1px solid black;
-}
+
 
 #container {
 width:400px;
 border:1px;
+margin-right: 10px;
+height:600px
 }
 
 
 #secondcontainer {
 width:50px;
+margin-right:600px;
 }
+
+#map {
+width: 400px;
+padding-left: 600px;
+}
+
+
 
 
 </style>
@@ -51,33 +61,18 @@ width:50px;
      <li>Low Level</li> <a href= "http://google.com"> <img src="images/icons/low128.png" alt="Low Levels" width="128" height="128" /> </a> <hr> </hr>
      <li>Danger</li>  <a href= "http://google.com"><img src="images/icons/danger128.png" alt="Danger Map" width="128" height="128" /> </a> <hr> </hr>
      <li>News Feeds</li> <a href= "http://google.com"> <img src="images/icons/news128.png" alt="News Feeds" width="128" height="128" /> </a> <hr> </hr>
-     <li>Settings</li> <a href= "http://google.com"> <img src="images/icons/settings128.png" alt="Setting"s width="128" height="128" /> </a>
-    </ul>
+     <li>Settings</li> <a href= "http://google.com"> <img src="images/icons/settings128.png" alt="Setting"s width="128" height="128" /> </aimages/icons/    </ul>
   </div>
-
-    <div id = "firstcolumn" style="color:#000">
-      <div>
-        Highest
-      </div>
-        <div id = "fourthcolumn">           
-       2nd Highest
-      </div>
-    </div>
-
-
-    <div id = "secondcolumn" style="color:#000">
-      <div>
-        Lowest
-      </div>
-
-     <div id= "thirdcolumn" style="color:#000">
-        <div>
-        News Feed
-        </div>  
-
     
+
+
+<div id = "map">
+     <div>
+       <iframe width="800" height="1600" style = "margin-left:60px" frameborder="0" scrolling="no" marginheight="750px" marginwidth="400px" src="https://maps.google.co.uk/?ie=UTF8&amp;ll=51.609489,-0.101624&amp;spn=0.515963,1.352692&amp;t=m&amp;z=10&amp;output=embed"></iframe><br /><small><a href="https://maps.google.co.uk/?ie=UTF8&amp;ll=51.609489,-0.101624&amp;spn=0.515963,1.352692&amp;t=m&amp;z=10&amp;source=embed" style="color:#0000FF;margin-left:60px">View Larger Map</a></small>
+    </div>
     </div>
   </div>
+</div>
 </div>
 
 </body>
