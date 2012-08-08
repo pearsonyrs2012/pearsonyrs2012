@@ -21,15 +21,15 @@ return to_json({error => "unable to download"}) if not $response->is_success;
 my $content = $response->content;
 return to_json({error => "invalid url $filepath"}) unless defined $content;
 my @lines = split("\n",$content);
-my %categorys;
+my %categories;
 my $line;
 while(defined($line =shift(@lines))) {
 	next unless $line =~ /<category>([^<]*)<\/category>/;
 	my $category = $1;
-	$categorys{$category}++;
+	$categories{$category}++;
 }
 
-to_json \%categorys;
+to_json \%categories;
 
 };
 
@@ -46,20 +46,20 @@ return to_json({error => "unable to download"}) if not $response->is_success;
 my $content = $response->content;
 return to_json({error => "invalid url $filepath"}) unless defined $content;
 my @lines = split("\n",$content);
-my %categorys;
+my %categories;
 my $line;
 while(defined($line =shift(@lines))) {
 	next unless $line =~ /<category>([^<]*)<\/category>/;
 	my $category = $1;
-	$categorys{$category}++;
+	$categories{$category}++;
 }
 my @overview;
 my $category;
-for $category (keys $category) {
+for $category (keys %categories) {
 	my %item;
 	$item{name} = lc($category);
 	$item{pressentaionname} = $category;
-	$item{level} = $categorys{$category} > $crossover;
+	$item{level} = $categories{$category} > $crossover;
 	push @overview, %item;
 }
 
