@@ -54,6 +54,7 @@ while(defined($line =shift(@lines))) {
 	$categorys{$category}++;
 }
 my @overview;
+my $category;
 for $category (keys $category) {
 	my %item;
 	$item{name} = lc($category);
