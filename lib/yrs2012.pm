@@ -71,7 +71,7 @@ sub pizza {
 	my $url = 'https://maps.googleapis.com/maps/api/place/search/json?location='.$lat.','.$long.'&radius=2000&types=food&sensor=true&key=AIzaSyDdTCCT8WlzCIzqbmfWsTlWGZ6N5UFQ_Lg&keyword=pizza';
 	my $json = getfile($url);
 	return $json if defined($json->{error});
-	warn "got json:$json->{content}";
+	#warn "got json:$json->{content}";
 	my $hash = from_json($json->{content});
 	warn "got google hash";
 	my $level = length(@{$hash->{results}});
