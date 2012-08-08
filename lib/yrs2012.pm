@@ -55,12 +55,12 @@ for $category (keys %categories) {
 	my %item;
 	$item{name} = lc($category);
 	$item{presentation_name} = $category;
-	$item{level} = $categories{$category} > $crossover ? "1": "0";
+	$item{level} = ($categories{$category} > $crossover) ? "1": "0";
 	push @overview, \%item;
 }
 	my $item = pizza(param('lat'),param('long'));
 	return to_json $item if defined $item->{error};
-	$item->{level} = $item->{level} > $crossover ? "1": "0";
+	$item->{level} = ($item->{level} > $crossover) ? "1": "0";
 	push @overview, $item;
 	return to_json \@overview;
 
