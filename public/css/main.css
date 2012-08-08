@@ -94,3 +94,7 @@ width: 582px;
 border: 1px;
 margin-left:200px;
 }
+
+.highlight {
+	background-color: #ffff00;
+}
