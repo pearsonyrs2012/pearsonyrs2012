@@ -35,7 +35,7 @@ to_json \%categories;
 
 
 get '/api/overview/:lat/:long/' => sub {
-debug "testing loggint\n";
+warn "testing loggint\n";
 my $crossover = 3;
 my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
 #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
