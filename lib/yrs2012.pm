@@ -35,7 +35,7 @@ to_json \%categories;
 
 
 get '/api/overview/:lat/:long/' => sub {
-warn "testing loggint\n";
+warn 'got params: ' param('lat'),',',param('long'),"\n";
 my $crossover = 3;
 my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
 #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
@@ -79,6 +79,7 @@ sub pizza {
 
 sub getfile {
 my ($url) = @_;
+warn "getting file $url \n";
 my $ua = LWP::UserAgent->new;
 $ua->timeout(10);
 $ua->env_proxy;
@@ -87,6 +88,7 @@ return {error => "unable to download"} if not $response->is_success;
 my $content = $response->content;
 return {error => "invalid url $url"} unless defined $content;
 return {content => $content};
+warn "got file $url \n";
 }
 
 true;
