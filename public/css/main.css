@@ -51,6 +51,7 @@ width:130px;
 border:1px solid black;
 margin-left:10px;
 margin-align:left;
+min-height:80px;
 }
 
 
@@ -59,6 +60,7 @@ float:left;
 width:130px;
 border:1px solid black;
 margin-align:left;
+min-height:80px;
 }
 
 #maincontent {
@@ -93,4 +95,8 @@ padding-left: 600px;
 width: 582px;
 border: 1px;
 margin-left:200px;
+}
+
+.highlight {
+	background-color: #ffff00;
 }
