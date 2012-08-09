@@ -7,7 +7,7 @@ get '/api/settings/colour/:colour/' => sub {
 	my $cookie = cookie 'settings';
 	my $settings = from_json $cookie if defined($cookie);
 	$settings->{colour} = param('colour');
-	cookie 'settings' => to_json($settings);
+	cookie 'settings' => to_json($settings), expires => '1 week';
     return to_json($settings);    
 
 };
