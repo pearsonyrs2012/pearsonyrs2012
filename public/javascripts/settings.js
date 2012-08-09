@@ -26,7 +26,7 @@ $(document).ready( function() {
 					console.log(errort);
 				}
 			});
-			$('#cookiesbox').attr("checked") = "checked";
+			$('#cookiesbox').attr("checked", "checked");
 			}
 		}
       },
@@ -49,7 +49,7 @@ close: function(hex, rgb) {
 });
 
 function savesettings () {
-if (cookies.checked == false) {		
+if ($("#cookiesbox").checked == false) {		
 var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
 if (answer)
 	$.ajax({
