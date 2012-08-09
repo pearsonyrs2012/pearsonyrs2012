@@ -91,7 +91,7 @@ sub pizza {
 }
 
 sub accident {
-	my $filepath = '../public/data/fatalaccidentdata.csv';
+	my $filepath = '/app/public/data/fatalaccidentdata.csv';
 	
 	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && return {error => "could not get accedent data", code => $!});
 	my $line;
