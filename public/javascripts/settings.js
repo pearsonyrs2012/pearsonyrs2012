@@ -95,8 +95,10 @@ var url = "api/settings/colour/" + background + "/"
 		console.log(errort);
 		}
 	});
-		var background = $('#backgroundcolour').miniColors('value');
-var url = "api/settings/colour/" + background + "/"
+	var background = $('#backgroundcolour').miniColors('value');
+	console.log(background);
+	var url = "api/settings/colour/" + background + "/"
+	console.log(url);
 	$.ajax({
       url: url,
       dataType: "json",
