@@ -41,15 +41,11 @@ function handle_geolocation_query(position){
               console.log("failed");
               console.log(text);
               console.log(errort);
-			  //var name = $(this)[0]["name"]
-			  //var imageid = '#' + name + 'levelimg'
-			  		//$(imageid).src = "images/icons/help.png";
-					//$(imageid).alt = "Error";
             }
     });
     
     //do this again in a bit
-    setTimeout(initiate_geolocation, 15000);
+    //setTimeout(initiate_geolocation, 15000);
 }
 
 function placename(lat, long) {
