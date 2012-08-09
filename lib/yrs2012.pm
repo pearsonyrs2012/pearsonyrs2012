@@ -67,9 +67,10 @@ get '/api/overview/:lat/:long/' => sub {
     }
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
+	$iten->{rawlevel} = $item->{level};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
-    my $item = accident(param('lat'),param('long'));
+    $item = accident(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
@@ -85,9 +86,8 @@ sub pizza {
 	#warn "got json:$json->{content}";
 	my $hash = from_json($json->{content});
 	warn "got google hash";
-	warn "$hash->{results}";
 	my $level = length(@{$hash->{results}});
-	return {name => 'pizza', presentation_name => 'Pizza', level => $level } ;
+	return {name => 'pizza', presentation_name => 'Pizza', level => $level, results => $hash->{results} } ;
 }
 
 sub accident {
