@@ -9,6 +9,7 @@ $(document).ready( function() {
       success: function(response) { 
         console.log("success");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
+		console.log(response.cookies);
 		if (response.cookies == 0) {		
 		var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
 		if (answer) {
