@@ -107,8 +107,8 @@ sub accident {
 	my $item;
 	my $count = 0;
 	for $item (@data) {
-		if ($lat + 0.01 <$item->[2] && $item->[2] > $lat - 0.01) {
-			if ($lat + 0.01 <$item->[3] && $item->[3] > $lat - 0.01) {
+		if ($lat + 0.01 <$item->[3] && $item->[3] > $lat - 0.01) {
+			if ($lat + 0.01 <$item->[2] && $item->[2] > $lat - 0.01) {
 			 $count++;
 		}
 		}
