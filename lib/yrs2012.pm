@@ -5,11 +5,9 @@ our $VERSION = '0.1';
 
 get '/api/settings/colour/:colour/' => sub {
 	my $cookie = cookie 'settings';
-	warn "got cookie $cookie";
-	my $settings = from_json $cookie;
+	my $settings = from_json $cookie if defined($cookie);
 	$settings->{colour} = param('colour');
 	cookie 'settings' => to_json($settings);
-	warn "set cookie";
     return to_json($settings);    
 
 };
