@@ -41,7 +41,7 @@ get '/api/cats/:lat/:long/' => sub {
         $item{name} = lc($category);
         $item{name} =~ s/ //g;
         $item{presentation_name} = $category;
-        $item{level} = ($categories{$category} > $crossover) ? "1": "0";
+        $item{level} = $categories{$category};
         push @overview, \%item;
     }
     my $item = pizza(param('lat'),param('long'));
@@ -79,7 +79,7 @@ get '/api/home/:lat/:long/' => sub {
         $item{name} = lc($category);
         $item{name} =~ s/ //g;
         $item{presentation_name} = $category;
-        $item{level} = ($categories{$category} > $crossover) ? "1": "0";
+        $item{level} = $categories{$category};
         push @overview, \%item;
     }
     my $item = pizza(param('lat'),param('long'));
