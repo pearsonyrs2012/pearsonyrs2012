@@ -25,7 +25,7 @@ get '/api/settings/cookies/:value/' => sub {
 	my $settings = from_json $cookie if defined($cookie);
 	$settings = { backcolour => '#FFFFFF' , cookies => 0} if not defined($cookie);
 	$settings->{cookies} = param('value');
-	warn 'parm:' . parm('value');
+	warn 'param:' . parm('value');
 	#warn 'deleting cookie' && cookie ('settings' => '', expires => 'Thu, Jan 01 1970 00:00:00 UTC') && return to_json($settings) if param('value') eq '0';
 	cookie 'settings' => to_json($settings), expires => '1 week';
     return to_json($settings);    
@@ -34,7 +34,7 @@ get '/api/settings/cookies/:value/' => sub {
 
 
 get '/' => sub {
-	send_file '/500.html';
+	send_file '/index.html';
 };
 get '/geo' => sub {
     send_file '/geo.html';
