@@ -26,7 +26,11 @@ get '/api/settings/cookies/:value/' => sub {
 	$settings = { backcolour => '#FFFFFF' , cookies => 0} if not defined($cookie);
 	$settings->{cookies} = param('value');
 	warn 'param:' . param('value');
-	warn 'deleting cookie' && cookie ('settings' => '', expires => 'Thu, Jan 01 1970 00:00:00 UTC') && return to_json($settings) if param('value') eq '0';
+	if (param('value') eq '0') {
+	warn 'deleting cookie';
+	cookie ('settings' => '', expires => 'Thu, Jan 01 1970 00:00:00 UTC');
+	return to_json($settings);
+	}
 	cookie 'settings' => to_json($settings), expires => '1 week';
     return to_json($settings);    
 
