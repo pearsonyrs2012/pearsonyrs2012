@@ -16,8 +16,8 @@ function handle_geolocation_query(position){
       success: function(response) { 
         console.log("success");
 		console.log(response.bigest.presentation_name);
-		$("#bigest").text(response.bigest.presentation_name);
-		$("#secondcolumn").text(response.secondbigist.presentation_name);
+		$("#bigist").text(response.bigest.presentation_name);
+		$("#fourthcolumn").text(response.secondbigist.presentation_name);
 		$("#lowist").text(response.lowist.presentation_name);
       },
       error: function(xhr,text,errort) {console.log(xhr);
