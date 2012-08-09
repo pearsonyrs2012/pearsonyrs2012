@@ -100,7 +100,7 @@ get '/api/home/:lat/:long/' => sub {
 	}
 	content_type 'application/json';
     to_json {bigest => $bigest, secondbigist => $secondbigist, lowist => $lowist};
-}
+};
 
 
 get '/api/overview/:lat/:long/' => sub {
