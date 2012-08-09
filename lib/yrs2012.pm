@@ -34,9 +34,72 @@ get '/api/cats/:lat/:long/' => sub {
         my $category = $1;
         $categories{$category}++;
     }
-
+	my @overview;
+    my $category;
+    for $category (keys %categories) {
+        my %item;
+        $item{name} = lc($category);
+        $item{name} =~ s/ //g;
+        $item{presentation_name} = $category;
+        $item{level} = $categories{$category};
+        push @overview, \%item;
+    }
+    my $item = pizza(param('lat'),param('long'));
+    return to_json $item if defined $item->{error};
+    push @overview, $item;
+    $item = accident(param('lat'),param('long'));
+    push @overview, $item;
+	content_type 'application/json';
     to_json \%categories;
 
+};
+
+get '/api/home/:lat/:long/' => sub {
+    my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
+    #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(10);
+    $ua->env_proxy;
+    my $response = $ua->get($filepath);
+    return to_json({error => "unable to download"}) if not $response->is_success;
+    my $content = $response->content;
+    return to_json({error => "invalid url $filepath"}) unless defined $content;
+    my @lines = split("\n",$content);
+    my %categories;
+    my $line;
+    while(defined($line =shift(@lines))) {
+        next unless $line =~ /<category>([^<]*)<\/category>/;
+        my $category = $1;
+        $categories{$category}++;
+    }
+	my @overview;
+    my $category;
+    for $category (keys %categories) {
+        my %item;
+        $item{name} = lc($category);
+        $item{name} =~ s/ //g;
+        $item{presentation_name} = $category;
+        $item{level} = $categories{$category};
+        push @overview, \%item;
+    }
+    my $item = pizza(param('lat'),param('long'));
+    return to_json $item if defined $item->{error};
+    push @overview, $item;
+    $item = accident(param('lat'),param('long'));
+    push @overview, $item;
+	my $bigest;
+	my $secondbigist;
+	my $lowist = @overview[0];
+	for $item (@overview) {
+		if ($item->{level} > $bigest->{level}) {
+			$secondbigist = $bigest;
+			$bigest = $item;
+		} elsif ($item->{level} < $lowist->{level}) {
+			$lowist = $item;
+		}
+	}
+	content_type 'application/json';
+    to_json {bigest => $bigest, secondbigist => $secondbigist, lowist => $lowist};
 };
 
 
