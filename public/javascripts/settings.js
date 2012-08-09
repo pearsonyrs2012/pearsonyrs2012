@@ -9,7 +9,7 @@ $(document).ready( function() {
       success: function(response) { 
         console.log("success");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
-		if (response.cookies = 0) {		
+		if (response.cookies == 0) {		
 		var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
 		if (answer) {
 			$.ajax({
@@ -48,7 +48,7 @@ close: function(hex, rgb) {
 });
 
 function savesettings () {
-if (cookies.checked = false) {		
+if (cookies.checked == false) {		
 var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
 if (answer)
 	$.ajax({
