@@ -23,7 +23,7 @@ get '/api/settings/' => sub {
 get '/api/settings/cookies/:value/' => sub {
 	my $cookie = cookie 'settings';
 	my $settings = from_json $cookie if defined($cookie);
-	$$settings = { backcolour => '#FFFFFF' , cookies => 0} if not defined($cookie);
+	$settings = { backcolour => '#FFFFFF' , cookies => 0} if not defined($cookie);
 	$settings->{cookies} = param('value');
 	delete cookies->{settings} && return to_json($settings) if param('value') == 0;
 	cookie 'settings' => to_json($settings), expires => '1 week';
