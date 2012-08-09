@@ -11,7 +11,7 @@ function handle_geolocation_query(position){
   	placename(position.coords.latitude, position.coords.longitude)
 
 	$.ajax({
-      url: "api/home/" + position.coords.latitude + "/" + position.coords.longitude + "/",
+      url: "api/h/" + position.coords.latitude + "/" + position.coords.longitude + "/",
       dataType: "json",
       success: function(response) { 
         console.log("success");
@@ -36,8 +36,8 @@ function handle_geolocation_query(position){
         });
 		
 		
-    },
-    error: function(xhr,text,errort) {console.log(xhr);
+      },
+      error: function(xhr,text,errort) {console.log(xhr);
               console.log("failed");
               console.log(text);
               console.log(errort);
@@ -50,4 +50,13 @@ function handle_geolocation_query(position){
     
     //do this again in a bit
     setTimeout(initiate_geolocation, 15000);
+}
+
+function placename(lat, long) {
+		var geocoder;
+		geocoder = new google.maps.Geocoder();
+		var latlng = new google.maps.LatLng(lat, long);
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+			$("#address").html(results[0]["formatted_address"])
+		})
 }
