@@ -95,5 +95,20 @@ var url = "api/settings/colour/" + background + "/"
 		console.log(errort);
 		}
 	});
+		var background = $('#backgroundcolour').miniColors('value');
+var url = "api/settings/colour/" + background + "/"
+	$.ajax({
+      url: url,
+      dataType: "json",
+      success: function(response) { 
+        console.log("success");
+		$('#backgroundcolour').miniColors('value', response.backcolour);
+      },
+      error: function(xhr,text,errort) {console.log(xhr);
+              console.log("failed");
+              console.log(text);
+              console.log(errort);
+            }
+    });	
 }
 }
