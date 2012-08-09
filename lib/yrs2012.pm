@@ -6,11 +6,19 @@ our $VERSION = '0.1';
 get '/api/settings/colour/:colour/' => sub {
 	my $cookie = cookie 'settings';
 	my $settings = from_json $cookie if defined($cookie);
-	$settings->{colour} = param('colour');
+	$settings->{backcolour} = param('colour');
 	cookie 'settings' => to_json($settings), expires => '1 week';
     return to_json($settings);    
 
 };
+
+get '/api/settings/' => sub {
+	my $cookie = cookie 'settings';
+	return $cookie if defined($cookie);
+	my $settings = { backcolour => '#FFFFFF'};
+	cookie 'settings' => to_json($settings), expires => '1 week';
+    return to_json($settings);    
+}
 
 get '/' => sub {
 	send_file '/index.html';
