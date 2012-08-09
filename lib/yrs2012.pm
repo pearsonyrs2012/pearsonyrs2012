@@ -34,6 +34,16 @@ get '/api/cats/:lat/:long/' => sub {
         my $category = $1;
         $categories{$category}++;
     }
+	my @overview;
+    my $category;
+    for $category (keys %categories) {
+        my %item;
+        $item{name} = lc($category);
+        $item{name} =~ s/ //g;
+        $item{presentation_name} = $category;
+        $item{level} = ($categories{$category} > $crossover) ? "1": "0";
+        push @overview, \%item;
+    }
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     push @overview, $item;
@@ -61,6 +71,16 @@ get '/api/home/:lat/:long/' => sub {
         next unless $line =~ /<category>([^<]*)<\/category>/;
         my $category = $1;
         $categories{$category}++;
+    }
+	my @overview;
+    my $category;
+    for $category (keys %categories) {
+        my %item;
+        $item{name} = lc($category);
+        $item{name} =~ s/ //g;
+        $item{presentation_name} = $category;
+        $item{level} = ($categories{$category} > $crossover) ? "1": "0";
+        push @overview, \%item;
     }
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
