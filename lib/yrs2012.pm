@@ -158,7 +158,7 @@ sub accident {
 	my ($lat,$long) = @_;
 	my $filepath = '/app/public/data/fatalaccidentdata.csv';
 	
-	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && return {error => "could not get accedent data", code => $!});
+	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},500));
 	my $line;
 	my @data;
 	while($line = <$file>) {
@@ -188,9 +188,9 @@ sub getfile {
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($url);
-    warn "failed to download file" && return {error => "unable to download:".$response->status_line} if not $response->is_success;
+    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},500) if not $response->is_success;
     my $content = $response->content;
-    warn "invalid url $url" && return {error => "invalid url $url"} unless defined $content;
+    warn "invalid url $url" && return send_error ({error => "invalid url $url"},500) unless defined $content;
     warn "got file $url \n";
     return {content => $content};
 
