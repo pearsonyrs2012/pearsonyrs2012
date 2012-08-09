@@ -15,6 +15,7 @@ function handle_geolocation_query(position){
       dataType: "json",
       success: function(response) { 
         console.log("success");
+		console.log(response.bigest.presentation_name);
 		$("bigest").text(response.bigest.presentation_name);
 		$("secondcolumn").text(response.secondbigist.presentation_name);
 		$("lowist").text(response.lowist.presentation_name);
