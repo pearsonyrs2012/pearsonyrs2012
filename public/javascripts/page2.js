@@ -32,26 +32,6 @@ function handle_geolocation_query(position){
             }
 			
 			}
-			/*
-            //add to page
-            li = $('<li></li>')
-			if(level >= 0.5){
-				li.append('<p>High</p>');
-				if (name == "pizza") {
-					$("#testlevelimg").src = "images/icons/high.png";
-					$("#testlevelimg").alt = "High Level";
-				}
-            }else{
-				li.append('<p>Low</p>'); 
-				if (name == "pizza") {
-					$("#testlevelimg").src = "images/icons/low.png";
-					$("#testlevelimg").alt = "Low Level";
-				}
-            }
-            li.append(name)            
-            $("#test").append(li)
-			//set table items
-			*/
 
         });
 		
