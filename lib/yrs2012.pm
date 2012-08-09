@@ -11,64 +11,64 @@ get '/geo' => sub {
 };
 
 get '/api/cats/:lat/:long/' => sub {
-my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
-#fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
-my $ua = LWP::UserAgent->new;
-$ua->timeout(10);
-$ua->env_proxy;
-my $response = $ua->get($filepath);
-return to_json({error => "unable to download"}) if not $response->is_success;
-my $content = $response->content;
-return to_json({error => "invalid url $filepath"}) unless defined $content;
-my @lines = split("\n",$content);
-my %categories;
-my $line;
-while(defined($line =shift(@lines))) {
-	next unless $line =~ /<category>([^<]*)<\/category>/;
-	my $category = $1;
-	$categories{$category}++;
-}
+    my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
+    #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(10);
+    $ua->env_proxy;
+    my $response = $ua->get($filepath);
+    return to_json({error => "unable to download"}) if not $response->is_success;
+    my $content = $response->content;
+    return to_json({error => "invalid url $filepath"}) unless defined $content;
+    my @lines = split("\n",$content);
+    my %categories;
+    my $line;
+    while(defined($line =shift(@lines))) {
+        next unless $line =~ /<category>([^<]*)<\/category>/;
+        my $category = $1;
+        $categories{$category}++;
+    }
 
-to_json \%categories;
+    to_json \%categories;
 
 };
 
 
 get '/api/overview/:lat/:long/' => sub {
-warn 'got params: ', param('lat'),',',param('long'),"\n";
-my $crossover = 3;
-my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
-#fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
-my $response = getfile($filepath);
-return to_json $response if defined($response->{error});
-my @lines = split("\n",$response->{content});
-my %categories;
-my $line;
-while(defined($line =shift(@lines))) {
-	next unless $line =~ /<category>([^<]*)<\/category>/;
-	my $category = $1;
-	$categories{$category}++;
-}
-my @overview;
-my $category;
-for $category (keys %categories) {
-	my %item;
-	$item{name} = lc($category);
-	$item{name} =~ s/ //g;
-	$item{presentation_name} = $category;
-	$item{level} = ($categories{$category} > $crossover) ? "1": "0";
-	push @overview, \%item;
-}
-	my $item = pizza(param('lat'),param('long'));
-	return to_json $item if defined $item->{error};
-	$item->{level} = ($item->{level} > $crossover) ? "1": "0";
-	push @overview, $item;
-	my $item = accident(param('lat'),param('long'));
-	return to_json $item;
-	return to_json $item if defined $item->{error};
-	$item->{level} = ($item->{level} > $crossover) ? "1": "0";
-	push @overview, $item;
-	return to_json \@overview;
+    warn 'got params: ', param('lat'),',',param('long'),"\n";
+    my $crossover = 3;
+    my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
+    #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
+    my $response = getfile($filepath);
+    return to_json $response if defined($response->{error});
+    my @lines = split("\n",$response->{content});
+    my %categories;
+    my $line;
+    while(defined($line =shift(@lines))) {
+        next unless $line =~ /<category>([^<]*)<\/category>/;
+        my $category = $1;
+        $categories{$category}++;
+    }
+    my @overview;
+    my $category;
+    for $category (keys %categories) {
+        my %item;
+        $item{name} = lc($category);
+        $item{name} =~ s/ //g;
+        $item{presentation_name} = $category;
+        $item{level} = ($categories{$category} > $crossover) ? "1": "0";
+        push @overview, \%item;
+    }
+    my $item = pizza(param('lat'),param('long'));
+    return to_json $item if defined $item->{error};
+    $item->{level} = ($item->{level} > $crossover) ? "1": "0";
+    push @overview, $item;
+    my $item = accident(param('lat'),param('long'));
+    return to_json $item;
+    return to_json $item if defined $item->{error};
+    $item->{level} = ($item->{level} > $crossover) ? "1": "0";
+    push @overview, $item;
+    return to_json \@overview;
 
 };
 
@@ -98,21 +98,19 @@ sub accident {
 	return \@data;
 }
    
-    
-
 
 sub getfile {
-my ($url) = @_;
-warn "getting file $url \n";
-my $ua = LWP::UserAgent->new;
-$ua->timeout(10);
-$ua->env_proxy;
-my $response = $ua->get($url);
-warn "failed to download file" && return {error => "unable to download:".$response->status_line} if not $response->is_success;
-my $content = $response->content;
-warn "invalid url $url" && return {error => "invalid url $url"} unless defined $content;
-warn "got file $url \n";
-return {content => $content};
+    my ($url) = @_;
+    warn "getting file $url \n";
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(10);
+    $ua->env_proxy;
+    my $response = $ua->get($url);
+    warn "failed to download file" && return {error => "unable to download:".$response->status_line} if not $response->is_success;
+    my $content = $response->content;
+    warn "invalid url $url" && return {error => "invalid url $url"} unless defined $content;
+    warn "got file $url \n";
+    return {content => $content};
 
 }
 
