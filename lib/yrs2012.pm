@@ -34,7 +34,7 @@ get '/api/settings/cookies/:value/' => sub {
 
 
 get '/' => sub {
-	send_file '/index.html';
+	send_file '/500.html';
 };
 get '/geo' => sub {
     send_file '/geo.html';
