@@ -3,8 +3,11 @@ use Dancer ':syntax';
 use LWP::UserAgent;
 our $VERSION = '0.1';
 
-get '/test' => sub {
-	cookie value => 'hello';
+get '/settings/colour/:colour' => sub {
+	my $cookie = cookie 'settings';
+	my $settings = from_json $cookie;
+	$settings->{colour} = param('colour');
+	cookie'settings' => to_json($settings);
     return "done";    
 
 };
