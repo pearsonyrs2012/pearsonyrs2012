@@ -91,6 +91,7 @@ sub pizza {
 }
 
 sub accident {
+	my ($lat,$long) = @_;
 	my $filepath = '/app/public/data/fatalaccidentdata.csv';
 	
 	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && return {error => "could not get accedent data", code => $!});
@@ -101,7 +102,18 @@ sub accident {
 	shift @feilds;
 	push @data,\@feilds;
 	}
-	return \@data;
+	#return \@data;
+	shift @data;
+	my $item;
+	my $count;
+	for $item (@data) {
+		if ($lat + 0.01 <$item->[2] && $item->[2] > $lat - 0.01) {
+			if ($lat + 0.01 <$item->[3] && $item->[3] > $lat - 0.01) {
+			 $count++;
+		}
+		}
+	}
+	return {name => 'accidents', presentation_name => 'Accidents', level => $count } ;
 }
    
 
