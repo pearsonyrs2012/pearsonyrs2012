@@ -51,6 +51,7 @@ width:130px;
 border:1px solid black;
 margin-left:10px;
 margin-align:left;
+min-height:80px;
 }
 
 
@@ -59,6 +60,7 @@ float:left;
 width:130px;
 border:1px solid black;
 margin-align:left;
+min-height:80px;
 }
 
 #maincontent {
