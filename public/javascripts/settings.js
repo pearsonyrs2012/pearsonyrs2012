@@ -97,7 +97,7 @@ var url = "api/settings/colour/" + background.substring(1) + "/"
 	});
 	var background = $('#backgroundcolour').miniColors('value');
 	console.log(background);
-	var url = "api/settings/colour/" + background + "/"
+	var url = "api/settings/colour/" + background.substring(1) + "/"
 	console.log(url);
 	$.ajax({
       url: url,
