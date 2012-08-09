@@ -18,7 +18,18 @@ function handle_geolocation_query(position){
             var level = $(this)[0]["level"]
             var name = $(this)[0]["name"]
             var pressentaionname = $(this)[0]["pressentaionname"]
-            
+			var imageid = '#' + name + 'levelimg'
+			if ($(imageid)){
+				if(level >= 0.5){
+					$(imageid).src = "images/icons/high.png";
+					$(imageid).alt = "High Level";
+				}else{
+					$(imageid).src = "images/icons/low.png";
+					$(imageid).alt = "Low Level";
+            }
+			
+			}
+			/*
             //add to page
             li = $('<li></li>')
 			if(level >= 0.5){
@@ -37,6 +48,7 @@ function handle_geolocation_query(position){
             li.append(name)            
             $("#test").append(li)
 			//set table items
+			*/
 
         });
 		
