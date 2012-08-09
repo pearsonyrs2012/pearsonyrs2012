@@ -4,8 +4,8 @@ use LWP::UserAgent;
 our $VERSION = '0.1';
 
 get '/test' => sub {
-
-    return __FILE__;    
+	cookie 'hello';
+    return "done";    
 
 };
 
