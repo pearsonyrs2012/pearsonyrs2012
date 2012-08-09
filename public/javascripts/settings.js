@@ -83,7 +83,7 @@ var url = "api/settings/colour/" + background + "/"
 
 } else {
 	$.ajax({
-	url: "api/settings/cookies/0/",
+	url: "api/settings/cookies/1/",
 	dataType: "json",
 	success: function(response) { 
 	console.log("success");
