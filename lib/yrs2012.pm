@@ -15,10 +15,22 @@ get '/api/settings/colour/:colour/' => sub {
 get '/api/settings/' => sub {
 	my $cookie = cookie 'settings';
 	return $cookie if defined($cookie);
-	my $settings = { backcolour => '#FFFFFF'};
-	cookie 'settings' => to_json($settings), expires => '1 week';
+	my $settings = { backcolour => '#FFFFFF' , cookies => 0};
     return to_json($settings);    
 };
+
+
+get '/api/settings/cookies/:value/' => sub {
+	my $cookie = cookie 'settings';
+	my $settings = from_json $cookie if defined($cookie);
+	
+	$settings->{cookies} = param('value');
+	delete cookies->{settings} && return to_json($settings) if param('value') = 0;
+	cookie 'settings' => to_json($settings), expires => '1 week';
+    return to_json($settings);    
+
+};
+
 
 get '/' => sub {
 	send_file '/index.html';
