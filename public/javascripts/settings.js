@@ -58,7 +58,7 @@ if (answer)
 	success: function(response) { 
 	console.log("success");
 	var background = $('#backgroundcolour').miniColors('value');
-var url = "api/settings/colour/" + background + "/"
+var url = "api/settings/colour/" + background.substring(1) + "/"
 	$.ajax({
       url: url,
       dataType: "json",
