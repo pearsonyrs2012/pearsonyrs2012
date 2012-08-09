@@ -70,7 +70,6 @@ get '/api/overview/:lat/:long/' => sub {
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
     my $item = accident(param('lat'),param('long'));
-    return to_json $item;
     return to_json $item if defined $item->{error};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
