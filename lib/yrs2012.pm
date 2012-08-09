@@ -18,7 +18,7 @@ get '/api/settings/' => sub {
 	my $settings = { backcolour => '#FFFFFF'};
 	cookie 'settings' => to_json($settings), expires => '1 week';
     return to_json($settings);    
-}
+};
 
 get '/' => sub {
 	send_file '/index.html';
@@ -100,7 +100,7 @@ get '/api/home/:lat/:long/' => sub {
     push @overview, $item;
 	my $bigest;
 	my $secondbigist;
-	my $lowist = @overview[0];
+	my $lowist = $overview[0];
 	for $item (@overview) {
 		if ($item->{level} > $bigest->{level}) {
 			$secondbigist = $bigest;
