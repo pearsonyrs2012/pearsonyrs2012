@@ -54,11 +54,17 @@ my $category;
 for $category (keys %categories) {
 	my %item;
 	$item{name} = lc($category);
+	$item{name} =~ s/ //g;
 	$item{presentation_name} = $category;
 	$item{level} = ($categories{$category} > $crossover) ? "1": "0";
 	push @overview, \%item;
 }
 	my $item = pizza(param('lat'),param('long'));
+	return to_json $item if defined $item->{error};
+	$item->{level} = ($item->{level} > $crossover) ? "1": "0";
+	push @overview, $item;
+	my $item = accident(param('lat'),param('long'));
+	return to_json $item;
 	return to_json $item if defined $item->{error};
 	$item->{level} = ($item->{level} > $crossover) ? "1": "0";
 	push @overview, $item;
@@ -76,6 +82,20 @@ sub pizza {
 	warn "got google hash";
 	my $level = length(@{$hash->{results}});
 	return {name => 'pizza', presentation_name => 'Pizza', level => $level } ;
+}
+
+sub accident {
+	my $filepath = '../public/data/fatalaccidentdata.csv';
+	
+	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && return {error => "could not get accedent data", code => $!});
+	my $line;
+	my @data;
+	while($line = <$file>) {
+	my @feilds = split(',',$line);
+	shift @feilds;
+	push @data,\@feilds;
+	}
+	return \@data;
 }
    
     
