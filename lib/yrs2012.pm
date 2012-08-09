@@ -74,6 +74,7 @@ get '/api/overview/:lat/:long/' => sub {
     return to_json $item if defined $item->{error};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
+	content_type 'text/plain';
     return to_json \@overview;
 
 };
