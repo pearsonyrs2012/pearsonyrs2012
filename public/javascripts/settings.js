@@ -95,3 +95,4 @@ var url = "api/settings/colour/" + background + "/"
 		}
 	});
 }
+}
