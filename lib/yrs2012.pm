@@ -89,7 +89,7 @@ get '/api/home/:lat/:long/' => sub {
     push @overview, $item;
 	my $bigest;
 	my $secondbigist;
-	my $lowist;
+	my $lowist = @overview[0];
 	for $item (@overview) {
 		if ($item->{level} > $bigest->{level}) {
 			$secondbigist = $bigest;
