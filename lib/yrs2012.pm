@@ -85,6 +85,7 @@ sub pizza {
 	#warn "got json:$json->{content}";
 	my $hash = from_json($json->{content});
 	warn "got google hash";
+	warn "$hash->{results}";
 	my $level = length(@{$hash->{results}});
 	return {name => 'pizza', presentation_name => 'Pizza', level => $level } ;
 }
