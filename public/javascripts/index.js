@@ -11,31 +11,13 @@ function handle_geolocation_query(position){
   	placename(position.coords.latitude, position.coords.longitude)
 
 	$.ajax({
-      url: "api/h/" + position.coords.latitude + "/" + position.coords.longitude + "/",
+      url: "api/home/" + position.coords.latitude + "/" + position.coords.longitude + "/",
       dataType: "json",
       success: function(response) { 
         console.log("success");
-        $(response).each(function(index) {
-          
-            // get values from response
-            var level = $(this)[0]["level"]
-            var name = $(this)[0]["name"]
-            var pressentaionname = $(this)[0]["pressentaionname"]
-			var imageid = '#' + name + 'levelimg'
-			if ($(imageid)){
-				if(level >= 0.5){
-					$(imageid).src = "images/icons/high.png";
-					$(imageid).alt = "High Level";
-				}else{
-					$(imageid).src = "images/icons/low.png";
-					$(imageid).alt = "Low Level";
-            }
-			
-			}
-
-        });
-		
-		
+		$("bigest").text(response.bigest.presentation_name);
+		$("secondcolumn").text(response.secondbigist.presentation_name);
+		$("lowist").text(response.lowist.presentation_name);
       },
       error: function(xhr,text,errort) {console.log(xhr);
               console.log("failed");
