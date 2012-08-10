@@ -50,7 +50,7 @@ close: function(hex, rgb) {
 });
 
 function savesettings () {
-if ($("#cookiesbox:checked") == undefined) {		
+if ($("#cookiesbox:checked") == []) {		
 var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
 if (answer) {
 	$.ajax({
