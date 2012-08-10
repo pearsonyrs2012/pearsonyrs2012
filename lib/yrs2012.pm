@@ -169,6 +169,10 @@ get '/api/overview/:lat/:long/' => sub {
     return to_json $item if defined $item->{error};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
+	$item = police(param('lat'),param('long'));
+    return to_json $item if defined $item->{error};
+    $item->{level} = ($item->{level} > $crossover) ? "1": "0";
+    push @overview, $item;
 	content_type 'application/json';
     return to_json \@overview;
 
@@ -217,6 +221,37 @@ sub getfile {
     my ($url) = @_;
     warn "getting file $url \n";
     my $ua = LWP::UserAgent->new;
+    $ua->timeout(10);
+    $ua->env_proxy;
+    my $response = $ua->get($url);
+    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},500) if not $response->is_success;
+    my $content = $response->content;
+    warn "invalid url $url" && return send_error ({error => "invalid url $url"},500) unless defined $content;
+    warn "got file $url \n";
+    return {content => $content};
+
+}
+
+sub police {
+	my ($lat,$long) = @_;
+	my $url = "http://policeapi2.rkh.co.uk/api/crimes-at-location?date=2012-02&lat=$lat&lng=$long";
+	my $json = getfileauth($url);
+	return $json if defined($json->{error});
+	#warn "got json:$json->{content}";
+	my $array = from_json($json->{content});
+	warn "got police";
+	my $level = @{$array};
+	return {name => 'crime', presentation_name => 'Crime', level => $level} ;
+}
+sub getfileauth {
+    my ($url) = @_;
+    warn "getting file $url \n";
+    my $ua = LWP::UserAgent->new;
+	$ua->credentials(
+  'policeapi2.rkh.co.uk:80',
+  '',
+  'surot85' => '521b5e3021fe8dfd510a7db6ac662f2a'
+);
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($url);
