@@ -71,7 +71,7 @@ get '/api/cats/:lat/:long/' => sub {
         $item{presentation_name} = $category;
         $item{level} = $categories{$category};
         push @overview, \%item;
-    }7
+    }
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     push @overview, $item;
