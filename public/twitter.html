@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
    <link rel="stylesheet" type="text/css" href="css/mobile.css" media="only screen and (max-device width:480px)"> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
 	<title>CleverWherever</title>
   </head>  
   <body>
@@ -23,12 +24,25 @@
   </div>
 
     <div id="maincontent">
-     
+    <div id="twtr-widget-1" class="twtr-widget"></div> 
 <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script id="">
 
 jQuery(window).ready(function(){  
-initiate_geolocation()	
+initiate_geolocation()
+	$.ajax({
+      url: "api/settings/",
+      dataType: "json",
+      success: function(response) { 
+		//general
+		$('body').css('background-color','#' + response.backcolour)
+      },
+      error: function(xhr,text,errort) {console.log(xhr);
+              console.log("failed");
+              console.log(text);
+              console.log(errort);
+            }
+    });	
 });  
 
 function initiate_geolocation() {  

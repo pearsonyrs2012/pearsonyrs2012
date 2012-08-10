@@ -179,7 +179,7 @@ sub pizza {
 	my $hash = from_json($json->{content});
 	warn "got google hash";
 	my $level = @{$hash->{results}};
-	return {name => 'pizza', presentation_name => 'Pizza', level => $level, results => $hash->{results} } ;
+	return {name => 'pizza', presentation_name => 'Pizza', level => $level / 5, results => $hash->{results} } ;
 }
 
 sub accident {
