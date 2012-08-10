@@ -226,7 +226,7 @@ sub getfile {
 
 
 get '/api/map/accidents/:lat/:long/' => sub {
-	my ($lat,$long) = @_;
+	my ($lat,$long) = (param('lat'),param('long'));
 	my $filepath = '/app/public/data/fatalaccidentdata.csv';
 	
 	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},500));
