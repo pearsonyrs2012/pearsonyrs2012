@@ -205,7 +205,7 @@ sub accident {
 		}
 		}
 	}
-	return {name => 'accidents', presentation_name => 'Accidents', level => $count } ;
+	return {name => 'accidents', presentation_name => 'Accidents', level => $count /2 } ;
 }
    
 
