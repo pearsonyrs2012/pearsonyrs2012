@@ -65,7 +65,7 @@ if (answer) {
 		console.log(text);
 		console.log(errort);
 		}
-	
+	 });	
 		var background = $('#backgroundcolour').miniColors('value');
 var url = "api/settings/colour/" + background.substring(1) + "/"
 	$.ajax({
