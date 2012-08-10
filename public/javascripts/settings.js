@@ -9,6 +9,7 @@ $(document).ready( function() {
       success: function(response) { 
         console.log("successfully retrived settings on load");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
+		if (response.cookies == 1) $('#cookiesbox').attr("checked", "checked")
 		console.log(response);
 		if (response.cookies == 0) {		
 		var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
