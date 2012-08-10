@@ -47,7 +47,9 @@ get '/geo' => sub {
 get '/api/cats/:lat/:long/' => sub {
     my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
     #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
-    my $ua = LWP::UserAgent->new;
+    my $ua = LWP::UserAgent->new(
+        agent => 'curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5'
+    );
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($filepath);
