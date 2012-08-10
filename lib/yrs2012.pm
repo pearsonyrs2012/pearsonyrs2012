@@ -199,8 +199,8 @@ sub accident {
 	my $item;
 	my $count = 0;
 	for $item (@data) {
-		if ($lat + 0.01 <$item->[3] && $item->[3] > $lat - 0.01) {
-			if ($lat + 0.01 <$item->[2] && $item->[2] > $lat - 0.01) {
+		if ($long + 0.01 <$item->[3] && $item->[3] > $long - 0.01) {
+			if ($lat + 0.01 <$item->[4] && $item->[4] > $lat - 0.01) {
 			 $count++;
 		}
 		}
@@ -223,5 +223,30 @@ sub getfile {
     return {content => $content};
 
 }
-
+get '/api/map/accidents/:lat/:long/' => sub {
+	my ($lat,$long) = @_;
+	my $filepath = '/app/public/data/fatalaccidentdata.csv';
+	
+	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},500));
+	my $line;
+	my @data;
+	while($line = <$file>) {
+	my @feilds = split(',',$line);
+	shift @feilds;
+	push @data,\@feilds;
+	}
+	#return \@data;
+	shift @data;
+	my $item;
+	my $count = 0;
+	my @accidents;
+	for $item (@data) {
+		if ($lat + 0.01 <$item->[4] && $item->[4] > $lat - 0.01) {
+			if ($long + 0.01 <$item->[3] && $item->[3] > $long - 0.01) {
+			 push @accidents, {lat => $item->[4], long => $item->[3] };
+		}
+		}
+	}
+	return to_json \@accidents ;
+	}
 true;
