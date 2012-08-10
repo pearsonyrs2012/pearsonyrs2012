@@ -46,7 +46,7 @@ function drawmap(lat, longatude) {
             icon: image
         });
 	$.ajax({
-      url: "api/maps/accidents/" + position.coords.latitude + "/" + position.coords.longitude + "/",
+      url: "api/maps/accidents/" + lat + "/" + longitude + "/",
       dataType: "json",
       success: function(response) { 
         console.log("success");
