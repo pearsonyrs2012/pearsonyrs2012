@@ -23,7 +23,6 @@ navigator.geolocation.getCurrentPosition(handle_geolocation_query);
 function handle_geolocation_query(position){  
     // alert('Lat: ' + position.coords.latitude + ' ' +  
       //    'Lon: ' + position.coords.longitude); 
-	  $('#coord').html("You are at latitude: " + position.coords.latitude + ' ' +  'Longitude: ' + position.coords.longitude)
 			drawmap(position.coords.latitude, position.coords.longitude)
 			placename(position.coords.latitude, position.coords.longitude)
 			setTimeout(initiate_geolocation, 15000);
