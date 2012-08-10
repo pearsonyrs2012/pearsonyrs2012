@@ -82,6 +82,21 @@ var url = "api/settings/colour/" + background.substring(1) + "/"
               console.log(errort);
             }
 			    });	
+} else {
+	$.ajax({
+	url: "api/settings/cookies/0/",
+	dataType: "json",
+	success: function(response) { 
+	console.log("successfully set cookies");
+
+
+	},
+	error: function(xhr,text,errort) {console.log(xhr);
+		console.log("failed");
+		console.log(text);
+		console.log(errort);
+		}
+	 });
 }
 
 } else {
