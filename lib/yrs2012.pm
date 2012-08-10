@@ -248,5 +248,5 @@ get '/api/map/accidents/:lat/:long/' => sub {
 		}
 	}
 	return to_json \@accidents ;
-	}
+	};
 true;
