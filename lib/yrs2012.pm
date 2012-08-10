@@ -259,9 +259,9 @@ sub getfileauth {
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($url);
-    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},512) if not $response->is_success;
+    warn "failed to download file" && send_error (to_json({error => "unable to download:".$response->status_line}),512) if not $response->is_success;
     my $content = $response->content;
-    warn "invalid url $url" && return send_error ({error => "invalid url $url"},512) unless defined $content;
+    warn "invalid url $url" && return send_error (to_json({error => "invalid url $url"}),512) unless defined $content;
     warn "got file $url \n";
     return {content => $content};
 
