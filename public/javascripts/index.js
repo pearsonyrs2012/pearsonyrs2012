@@ -54,6 +54,7 @@ function initiate_geolocation() {
 
   }
 	
+});
 } 
 
 function handle_geolocation_query(position){
