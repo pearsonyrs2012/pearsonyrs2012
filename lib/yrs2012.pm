@@ -199,8 +199,8 @@ sub accident {
 	my $item;
 	my $count = 0;
 	for $item (@data) {
-		if ($long + 0.01 > $item->[3] && $item->[3] > $long - 0.01) {
-			if ($lat + 0.01 > $item->[4] && $item->[4] > $lat - 0.01) {
+		if ($long + 0.01 > $item->[2] && $item->[2] > $long - 0.01) {
+			if ($lat + 0.01 > $item->[3] && $item->[3] > $lat - 0.01) {
 			 $count++;
 		}
 		}
@@ -243,9 +243,9 @@ get '/api/map/accidents/:lat/:long/' => sub {
 	my $count = 0;
 	my @accidents;
 	for $item (@data) {
-		if ($lat + 0.01 > $item->[4] && $item->[4] > $lat - 0.01) {
-			if ($long + 0.01 > $item->[3] && $item->[3] > $long - 0.01) {
-			 push @accidents, {lat => $item->[4], long => $item->[3] };
+		if ($lat + 0.01 > $item->[3] && $item->[3] > $lat - 0.01) {
+			if ($long + 0.01 > $item->[2] && $item->[2] > $long - 0.01) {
+			 push @accidents, {lat => $item->[3], long => $item->[2] };
 		}
 		}
 	}
