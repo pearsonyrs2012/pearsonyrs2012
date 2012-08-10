@@ -7,7 +7,7 @@ $(document).ready( function() {
       url: "api/settings/",
       dataType: "json",
       success: function(response) { 
-        console.log("success");
+        console.log("successfully retrived settings on load");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
 		console.log(response);
 		if (response.cookies == 0) {		
@@ -17,7 +17,7 @@ $(document).ready( function() {
 				url: "api/settings/cookies/1/",
 				dataType: "json",
 				success: function(response) { 
-				console.log("success");
+				console.log("successfully set cookies");
 				$('#backgroundcolour').miniColors('value', response.backcolour);	
 				},
 				error: function(xhr,text,errort) {console.log(xhr);
@@ -51,19 +51,28 @@ close: function(hex, rgb) {
 function savesettings () {
 if ($("#cookiesbox").checked == false) {		
 var answer = confirm ("do you give us permission to place cookies on your computer so we can save your settings?");
-if (answer)
+if (answer) {
 	$.ajax({
 	url: "api/settings/cookies/1/",
 	dataType: "json",
 	success: function(response) { 
-	console.log("success");
-	var background = $('#backgroundcolour').miniColors('value');
+	console.log("successfully set cookies");
+
+
+	},
+	error: function(xhr,text,errort) {console.log(xhr);
+		console.log("failed");
+		console.log(text);
+		console.log(errort);
+		}
+	
+		var background = $('#backgroundcolour').miniColors('value');
 var url = "api/settings/colour/" + background.substring(1) + "/"
 	$.ajax({
       url: url,
       dataType: "json",
       success: function(response) { 
-        console.log("success");
+        console.log("successfully set colour");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
       },
       error: function(xhr,text,errort) {console.log(xhr);
@@ -71,22 +80,15 @@ var url = "api/settings/colour/" + background.substring(1) + "/"
               console.log(text);
               console.log(errort);
             }
-    });	
-	},
-	error: function(xhr,text,errort) {console.log(xhr);
-		console.log("failed");
-		console.log(text);
-		console.log(errort);
-		}
-	});
-
+			    });	
+}
 
 } else {
 	$.ajax({
 	url: "api/settings/cookies/1/",
 	dataType: "json",
 	success: function(response) { 
-	console.log("success");
+	console.log("successfull set cookies");
 	var background = $('#backgroundcolour').miniColors('value');
 	},
 	error: function(xhr,text,errort) {console.log(xhr);
