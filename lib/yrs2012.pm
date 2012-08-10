@@ -145,6 +145,9 @@ get '/api/overview/:lat/:long/' => sub {
         next unless $line =~ /<category>([^<]*)<\/category>/;
         my $category = $1;
         $categories{$category}++;
+		if ($category eq "Dumped rubbish" || $category eq "Refuse collection" || $category eq "Litter bin") {
+		$categories{'Rubbish'}++;
+		}
     }
     my @overview;
     my $category;
@@ -155,6 +158,7 @@ get '/api/overview/:lat/:long/' => sub {
         $item{presentation_name} = $category;
         $item{level} = ($categories{$category} > $crossover) ? "1": "0";
         push @overview, \%item;
+
     }
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
