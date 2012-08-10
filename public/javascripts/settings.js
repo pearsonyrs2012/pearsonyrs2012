@@ -7,6 +7,9 @@ $(document).ready( function() {
       url: "api/settings/",
       dataType: "json",
       success: function(response) { 
+		//general
+		$('body').css('background-color','#' + response.backcolour)
+		//setingss page spercific
         console.log("successfully retrived settings on load");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
 		if (response.cookies == 1) $('#cookiesbox').attr("checked", "checked")
