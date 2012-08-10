@@ -198,7 +198,7 @@ sub accident {
 	my ($lat,$long) = @_;
 	my $filepath = '/app/public/data/fatalaccidentdata.csv';
 	
-	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},500));
+	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},512));
 	my $line;
 	my @data;
 	while($line = <$file>) {
@@ -228,9 +228,9 @@ sub getfile {
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($url);
-    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},500) if not $response->is_success;
+    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},512) if not $response->is_success;
     my $content = $response->content;
-    warn "invalid url $url" && return send_error ({error => "invalid url $url"},500) unless defined $content;
+    warn "invalid url $url" && return send_error ({error => "invalid url $url"},512) unless defined $content;
     warn "got file $url \n";
     return {content => $content};
 
@@ -259,9 +259,9 @@ sub getfileauth {
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($url);
-    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},500) if not $response->is_success;
+    warn "failed to download file" && send_error ({error => "unable to download:".$response->status_line},512) if not $response->is_success;
     my $content = $response->content;
-    warn "invalid url $url" && return send_error ({error => "invalid url $url"},500) unless defined $content;
+    warn "invalid url $url" && return send_error ({error => "invalid url $url"},512) unless defined $content;
     warn "got file $url \n";
     return {content => $content};
 
@@ -272,7 +272,7 @@ get '/api/map/accidents/:lat/:long/' => sub {
 	my ($lat,$long) = (param('lat'),param('long'));
 	my $filepath = '/app/public/data/fatalaccidentdata.csv';
 	
-	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},500));
+	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},512));
 	my $line;
 	my @data;
 	while($line = <$file>) {
