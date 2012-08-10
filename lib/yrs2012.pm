@@ -250,6 +250,7 @@ sub police {
 sub getfileauth {
     my ($url) = @_;
     warn "getting file $url \n";
+		return {content => to_json([])};
     my $ua = LWP::UserAgent->new;
 	$ua->credentials(
   'policeapi2.rkh.co.uk:80',
@@ -258,7 +259,7 @@ sub getfileauth {
 );
     $ua->timeout(10);
     $ua->env_proxy;
-	return to_json({content => []});
+
     my $response = $ua->get($url);
     warn "failed to download file" && send_error (to_json({error => "unable to download:".$response->status_line}),512) if not $response->is_success;
     my $content = $response->content;
