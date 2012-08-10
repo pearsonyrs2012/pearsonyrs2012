@@ -258,6 +258,7 @@ sub getfileauth {
 );
     $ua->timeout(10);
     $ua->env_proxy;
+	return {content => []};
     my $response = $ua->get($url);
     warn "failed to download file" && send_error (to_json({error => "unable to download:".$response->status_line}),512) if not $response->is_success;
     my $content = $response->content;
