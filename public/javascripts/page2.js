@@ -37,10 +37,10 @@ function handle_geolocation_query(position){
 			var imageid = '#' + name + 'levelimg'
 			if ($(imageid)){
 				if(level >= 0.5){
-					$(imageid).attr("src","images/icons/high.png");
+					$(imageid).attr("src","images/icons/high128.png");
 					$(imageid).attr("alt","High Level");
 				}else{
-					$(imageid).attr("src","images/icons/low.png");
+					$(imageid).attr("src","images/icons/low128.png");
 					$(imageid).attr("alt","Low Level");
             }
 			
