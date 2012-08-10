@@ -114,6 +114,10 @@ get '/api/home/:lat/:long/' => sub {
     return to_json $item if defined $item->{error};
     push @overview, $item;
     $item = accident(param('lat'),param('long'));
+	return to_json $item if defined $item->{error};
+    push @overview, $item;
+	$item = police(param('lat'),param('long'));
+    return to_json $item if defined $item->{error};
     push @overview, $item;
 	my $bigest;
 	my $secondbigist;
