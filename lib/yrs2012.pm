@@ -47,10 +47,7 @@ get '/geo' => sub {
 get '/api/cats/:lat/:long/' => sub {
     my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
     #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
-    
-    $ua->timeout(10);
-    $ua->env_proxy;
-    my $response = $ua->get($filepath);
+    my $response = getfile($filepath);
     return to_json({error => "unable to download"}) if not $response->is_success;
     my $content = $response->content;
     return to_json({error => "invalid url $filepath"}) unless defined $content;
