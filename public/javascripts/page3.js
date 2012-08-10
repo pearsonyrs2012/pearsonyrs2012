@@ -17,14 +17,6 @@ jQuery(window).ready(function(){
 initiate_geolocation()	
 });  
 function initiate_geolocation() {  
-    navigator.geolocation.getCurrentPosition(handle_geolocation_query);
-	 var mapOptions = {
-          zoom: 17,
-          center: new google.maps.LatLng(lat, longatude),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-    map = new google.maps.Map(document.getElementById('map_canvas'),
-                                      mapOptions);	
 } 
 
 function handle_geolocation_query(position){  
@@ -40,6 +32,14 @@ function handle_geolocation_query(position){
 function drawmap(lat, longatude) {
         var image = 'images/map-pointer.png';
         var myLatLng = new google.maps.LatLng(lat, longatude);
+		    navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+	 var mapOptions = {
+          zoom: 17,
+          center: new google.maps.LatLng(lat, longatude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+    map = new google.maps.Map(document.getElementById('map_canvas'),
+                                      mapOptions);	
         var beachMarker = new google.maps.Marker({
             position: myLatLng,
             map: map,
