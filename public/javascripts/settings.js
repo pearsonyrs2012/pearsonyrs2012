@@ -127,6 +127,7 @@ var url = "api/settings/colour/" + background.substring(1) + "/"
       success: function(response) { 
         console.log("success");
 		$('#backgroundcolour').miniColors('value', response.backcolour);
+		$('body').css('background-color','#' + response.backcolour)
       },
       error: function(xhr,text,errort) {console.log(xhr);
               console.log("failed");
