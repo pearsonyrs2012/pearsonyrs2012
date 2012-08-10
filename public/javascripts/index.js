@@ -18,11 +18,11 @@ jQuery(window).ready(function(){
 function initiate_geolocation() {  
     navigator.geolocation.getCurrentPosition(handle_geolocation_query);
 
-	soundManager.setup({
+	//soundManager.setup({
 
   // location: path to SWF files, as needed (SWF file name is appended later.)
 
-  url: 'javascripts/soundmanager/swf/',
+ // url: 'javascripts/soundmanager/swf/',
 
 
   // use soundmanager2-nodebug-jsmin.js, or disable debug mode (enabled by default) after development/testing
@@ -30,7 +30,7 @@ function initiate_geolocation() {
 
   // good to go: the onready() callback
 
-  onready: function() {
+  //onready: function() {
 
     // SM2 has started - now you can create and play sounds!
 
@@ -42,19 +42,18 @@ function initiate_geolocation() {
     //});
 
     //mySound.play();
-
-  },
+// },
 
   // optional: ontimeout() callback for handling start-up failure
 
-  ontimeout: function() {
+//  ontimeout: function() {
 
     // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
     // See the flashblock demo when you want to start getting fancy.
 
-  }
+ // }
 	
-});
+//});
 } 
 
 function handle_geolocation_query(position){
