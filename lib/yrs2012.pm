@@ -47,9 +47,7 @@ get '/geo' => sub {
 get '/api/cats/:lat/:long/' => sub {
     my $filepath = 'http://www.fixmystreet.com/rss/l/'.param('lat').','.param('long').'/2';#get file
     #fixmystreeturl: www.fixmystreet.com/rss/l/:lat,:long/:dist
-    my $ua = LWP::UserAgent->new(
-        agent => 'curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5'
-    );
+    
     $ua->timeout(10);
     $ua->env_proxy;
     my $response = $ua->get($filepath);
@@ -73,7 +71,7 @@ get '/api/cats/:lat/:long/' => sub {
         $item{presentation_name} = $category;
         $item{level} = $categories{$category};
         push @overview, \%item;
-    }
+    }7
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     push @overview, $item;
@@ -253,7 +251,9 @@ sub getfileauth {
     my ($url) = @_;
     warn "getting file $url \n";
 		return {content => to_json([])};
-    my $ua = LWP::UserAgent->new;
+	my $ua = LWP::UserAgent->new(
+        agent => 'curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5'
+    );
 	$ua->credentials(
   'policeapi2.rkh.co.uk:80',
   '',
@@ -261,7 +261,7 @@ sub getfileauth {
 );
     $ua->timeout(10);
     $ua->env_proxy;
-
+	$
     my $response = $ua->get($url);
     warn "failed to download file" && send_error (to_json({error => "unable to download:".$response->status_line}),512) if not $response->is_success;
     my $content = $response->content;
