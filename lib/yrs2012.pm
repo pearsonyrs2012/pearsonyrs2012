@@ -120,7 +120,7 @@ get '/api/home/:lat/:long/' => sub {
 	my $secondbigist;
 	my $lowist = $overview[0];
 	for $item (@overview) {
-		if ($item->{level} > $bigest->{level}) {
+		if ($item->{level} >= $bigest->{level}) {
 			$secondbigist = $bigest;
 			$bigest = $item;
 		} elsif ($item->{level} < $lowist->{level}) {
