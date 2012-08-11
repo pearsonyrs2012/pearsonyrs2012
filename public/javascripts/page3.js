@@ -1,4 +1,5 @@
 var map;
+var beachMarker;
 jQuery(window).ready(function(){  
 	$.ajax({
       url: "api/settings/",
@@ -14,7 +15,7 @@ jQuery(window).ready(function(){
             }
     });
     // jQuery("#btnInit").click(initiate_geolocation);
-initiate_geolocation()	
+firstinitiate_geolocation()	
 });  
 function initiate_geolocation() {  
 navigator.geolocation.getCurrentPosition(handle_geolocation_query);
@@ -28,23 +29,36 @@ function handle_geolocation_query(position){
 			setTimeout(initiate_geolocation, 15000);
 }
 
+function firstinitiate_geolocation() {  
+navigator.geolocation.getCurrentPosition(firsthandle_geolocation_query);
+} 
 
-function drawmap(lat, longatude) {
-        var image = 'images/map-pointer.png';
+function firsthandle_geolocation_query(position){  
+    // alert('Lat: ' + position.coords.latitude + ' ' +  
+      //    'Lon: ' + position.coords.longitude); 
+	    var image = 'images/map-pointer.png';
         var myLatLng = new google.maps.LatLng(lat, longatude);
 		    
-	 var mapOptions = {
+	  	var mapOptions = {
           zoom: 17,
           center: new google.maps.LatLng(lat, longatude),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
-    map = new google.maps.Map(document.getElementById('map_canvas'),
+		map = new google.maps.Map(document.getElementById('map_canvas'),
                                       mapOptions);	
-        var beachMarker = new google.maps.Marker({
+        beachMarker = new google.maps.Marker({
             position: myLatLng,
             map: map,
             icon: image
         });
+			drawmap(position.coords.latitude, position.coords.longitude)
+			placename(position.coords.latitude, position.coords.longitude)
+			setTimeout(initiate_geolocation, 15000);
+}
+
+function drawmap(lat, longatude) {
+	beachMarker.setPosition(new google.maps.LatLng(lat, longatude))
+
 	$.ajax({
       url: "api/map/accidents/" + lat + "/" + longatude + "/",
       dataType: "json",
@@ -59,7 +73,7 @@ function drawmap(lat, longatude) {
             //plotthem
 			var image = 'images/icons/danger32.png';
 			var myLatLng = new google.maps.LatLng(lat, longatude);
-			var beachMarker = new google.maps.Marker({
+			var Marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
             icon: image
