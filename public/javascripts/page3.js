@@ -37,7 +37,7 @@ function firsthandle_geolocation_query(position){
     // alert('Lat: ' + position.coords.latitude + ' ' +  
       //    'Lon: ' + position.coords.longitude); 
 	    var image = 'images/map-pointer.png';
-        var myLatLng = new google.maps.LatLng(lat, longatude);
+        var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 		    
 	  	var mapOptions = {
           zoom: 17,
