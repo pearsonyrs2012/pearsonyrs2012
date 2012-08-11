@@ -41,7 +41,7 @@ function firsthandle_geolocation_query(position){
 		    
 	  	var mapOptions = {
           zoom: 17,
-          center: new google.maps.LatLng(lat, longatude),
+          center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 		map = new google.maps.Map(document.getElementById('map_canvas'),
