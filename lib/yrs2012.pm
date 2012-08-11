@@ -116,8 +116,8 @@ get '/api/home/:lat/:long/' => sub {
 	$item = police(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     push @overview, $item;
-	my $bigest;
-	my $secondbigist;
+	my $bigest = $overview[1];
+	my $secondbigist = $overview[2];
 	my $lowist = $overview[0];
 	for $item (@overview) {
 		if ($item->{level} >= $bigest->{level}) {
