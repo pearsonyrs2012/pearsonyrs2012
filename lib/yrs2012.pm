@@ -6,6 +6,9 @@ our $VERSION = '0.1';
 
 set layout => 'main';
 
+get '/info' => sub {
+return to_json ({layout => setting('layout'), 'template engine' => setting('template') });
+};
 get '/api/settings/colour/:colour/' => sub {
 	my $cookie = cookie 'settings';
 	my $settings = from_json $cookie if defined($cookie);
