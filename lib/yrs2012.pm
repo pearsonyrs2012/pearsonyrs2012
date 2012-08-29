@@ -4,6 +4,8 @@ use datasets::accidents;
 use LWP::UserAgent;
 our $VERSION = '0.1';
 
+set layout => 'main';
+
 get '/api/settings/colour/:colour/' => sub {
 	my $cookie = cookie 'settings';
 	my $settings = from_json $cookie if defined($cookie);
@@ -39,7 +41,9 @@ get '/api/settings/cookies/:value/' => sub {
 
 
 get '/' => sub {
-	send_file '/index.html';
+	return template 'index', {Javascripts => '<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+   <!-- <script type="text/javascript" src="javascripts/soundmanager/script/soundmanager2.js"></script> !-->
+   <script type="text/javascript" src="javascripts/index.js"></script>', Page => 'index'} ;
 };
 get '/geo' => sub {
     send_file '/geo.html';
