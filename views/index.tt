@@ -1,0 +1,23 @@
+<div id="firstcolumn" style="color:#000">
+	<div id="bigist">
+		Highest
+	</div>
+    <div id="fourthcolumn">           
+		2nd Highest
+    </div>
+</div>
+
+
+<div id = "secondcolumn" style="color:#000">
+	<div id="lowist">
+		Lowest
+	</div>
+
+	<div id= "thirdcolumn" style="color:#000">
+		<div>
+			News Feed
+		</div> 
+	</div>
+</div>	
+
+    

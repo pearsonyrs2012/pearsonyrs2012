@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="shortcut icon" type="image/png" href="images/LOGO.png">
+		<meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/mobile.css" media="only screen and (max-device width:480px)">
+		<title>CleverWherever</title>
+		<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<!-- dont currently host jquery<script type="text/javascript">/* <![CDATA[ */
+		!window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"><\/script>')
+		/* ]]> */</script>-->
+		<%Javascripts%>
+		<script type="text/javascript" src="javascripts/<% Page %>.js"></script>
+	</head>
+	<body>
+		<div id = "container"> 
+			<h1><a href="index.html">CleverWherever</a></h1>
+			<h2 id="address"></h2>
+			<div id = "links" style="color:#000">
+			<ul>
+				<li class="<% IF Highligh.Highlevel %> highlight <% END %>">High Level</li> 
+				<a href= "2ndPAGE.html"> 
+					<img src="images/icons/high128.png" alt="High Levels" width="128" height="128" />
+				</a> 
+				<hr></hr>
+				<li class="<% IF Highligh.Lowlevel %> highlight <% END %>">Low Level</li> 
+				<a href= "2ndPAGE.html">
+					<img src="images/icons/low128.png" alt="Low Levels" width="128" height="128" />
+				</a> 
+				<hr></hr>
+				<li class="<% IF Highligh.Danger %> highlight <% END %>">Danger</li>  
+				<a href= "Page 3.html">
+					<img src="images/icons/danger128.png" alt="Danger Map" width="128" height="128" />
+				</a>
+				<hr></hr>
+				<li class="<% IF Highligh.Newsfeeds %> highlight <% END %>">News Feeds</li>
+				<a href= "twitter.html">
+					<img src="images/icons/news128.png" alt="News Feeds" width="128" height="128" />
+				</a> 
+				<hr></hr>
+				<li>Settings</li>
+				<a href= "settingspage.html">
+					<img src="images/icons/settings128.png" alt="Setting"s width="128" height="128" /> 
+				</a>
+			</ul>
+		</div>
+	<% content %>
+	</body>
+</html>
