@@ -20,38 +20,40 @@
 			<h2 id="address"></h2>
 			<div id = "links" style="color:#000">
 			<ul>
-				<li class="<% IF Highlight.Highlevel %> highlight <% END %>">
+				<li class="<% IF Highlight.Highlevel == 1 %> highlight <% END %>">
 					High Level 
 					<a href= "2ndPAGE.html"> 
 						<img src="images/icons/high128.png" alt="High Levels" width="128" height="128" />
 					</a>
 				</li>
 				<hr></hr>
-				<li class="<% IF Highlight.Lowlevel %> highlight <% END %>">
+				<li class="<% IF Highlight.Lowlevel == 1%> highlight <% END %>">
 					Low Level
 					<a href= "2ndPAGE.html">
 						<img src="images/icons/low128.png" alt="Low Levels" width="128" height="128" />
 					</a> 
 				</li> 
 				<hr></hr>
-				<li class="<% IF Highlight.Danger %> highlight <% END %>">
+				<li class="<% IF Highlight.Danger == 1%> highlight <% END %>">
 					Danger
 					<a href= "Page 3.html">
 						<img src="images/icons/danger128.png" alt="Danger Map" width="128" height="128" />
 					</a>
 				</li>
 				<hr></hr>
-				<li class="<% IF Highlight.Newsfeeds %> highlight <% END %>">
+				<li class="<% IF Highlight.Newsfeeds == 1%> highlight <% END %>">
 					News Feeds
 					<a href= "twitter.html">
 						<img src="images/icons/news128.png" alt="News Feeds" width="128" height="128" />
 					</a>
 				</li>				
 				<hr></hr>
-				<li class="<% IF Highlight.Settings %> highlight <% END %>">Settings</li>
-				<a href= "settingspage.html">
-					<img src="images/icons/settings128.png" alt="Setting"s width="128" height="128" /> 
-				</a>
+				<li class="<% IF Highlight.Settings == 1 %> highlight <% END %>">
+					Settings
+					<a href= "settingspage.html">
+						<img src="images/icons/settings128.png" alt="Setting"s width="128" height="128" /> 
+					</a>
+				</li>
 			</ul>
 		</div>
 	<% content %>
