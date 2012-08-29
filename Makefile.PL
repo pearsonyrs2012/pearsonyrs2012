@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
@@ -15,9 +16,10 @@ WriteMakefile(
         'Test::More' => 0,
         'YAML'       => 0,
         'JSON'       => 0,
-        'Dancer'     => 1.3098,
+        'Dancer'     => 1.3100,
 		'LWP::UserAgent' => 6.04,
-		'LWP::Protocol::https' => 0
+		'LWP::Protocol::https' => 0,
+		'Template::Toolkit' => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'yrs2012-*' },
