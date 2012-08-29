@@ -48,7 +48,7 @@
 					</a>
 				</li>				
 				<hr></hr>
-				<li>Settings</li>
+				<li class="<% IF Highlight.Settings %> highlight <% END %>">Settings</li>
 				<a href= "settingspage.html">
 					<img src="images/icons/settings128.png" alt="Setting"s width="128" height="128" /> 
 				</a>

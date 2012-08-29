@@ -41,9 +41,17 @@ get '/api/settings/cookies/:value/' => sub {
 
 
 get '/' => sub {
-	return template 'index', {Javascripts => '<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-   <!-- <script type="text/javascript" src="javascripts/soundmanager/script/soundmanager2.js"></script> !-->
-   <script type="text/javascript" src="javascripts/index.js"></script>', Page => 'index'} ;
+	return template 'index', {
+	Javascripts => '<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+   <!-- <script type="text/javascript" src="javascripts/soundmanager/script/soundmanager2.js"></script> !-->', 
+	Page => 'index',
+	Highlight => {
+					Highlevel => 0,
+					Lowlevel => 0,
+					Danger => 0,
+					Newsfeeds => 0,
+					Settings => 0
+					}} ;
 };
 get '/geo' => sub {
     send_file '/geo.html';
