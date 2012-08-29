@@ -77,7 +77,7 @@ get '/api/cats/:lat/:long/' => sub {
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     push @overview, $item;
-    $item = accident(param('lat'),param('long'));
+    $item = datasets::accidents::query(param('lat'),param('long'));
     push @overview, $item;
 	content_type 'application/json';
     to_json \%categories;
@@ -115,7 +115,7 @@ get '/api/home/:lat/:long/' => sub {
     my $item = pizza(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     push @overview, $item;
-    $item = accident(param('lat'),param('long'));
+    $item = datasets::accidents::query(param('lat'),param('long'));
 	return to_json $item if defined $item->{error};
     push @overview, $item;
 	$item = police(param('lat'),param('long'));
