@@ -2,6 +2,7 @@ package yrs2012;
 use Dancer ':syntax';
 use datasets::accidents;
 use LWP::UserAgent;
+use Template;
 our $VERSION = '0.1';
 
 set layout => 'main';
