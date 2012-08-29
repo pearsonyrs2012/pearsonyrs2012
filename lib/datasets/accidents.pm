@@ -21,6 +21,29 @@ sub query {
 	}
 	return {name => 'accidents', presentation_name => 'Accidents', level => $count /2 } ;
 }
+sub getpoints {
+	my ($lat,$long) = @_;
+	my $line;
+	my @data;
+	while($line = <DATA>) {
+	my @feilds = split(',',$line);
+	shift @feilds;
+	push @data,\@feilds;
+	}
+	#return \@data;
+	shift @data;
+	my $item;
+	my $count = 0;
+	my @accidents;
+	for $item (@data) {
+		if ($lat + 0.01 > $item->[3] && $item->[3] > $lat - 0.01) {
+			if ($long + 0.01 > $item->[2] && $item->[2] > $long - 0.01) {
+			 push @accidents, {lat => $item->[3], long => $item->[2] };
+			}
+		}
+	}
+	return \@accidents;
+	}
 1;
 __END__
 Fatal_Accident_Index,Month_of_Accident,Hour_of_Accident,Longitude,Latitude,Pedestrian_Casualties,Pedal_Cycles,Motor_Cycles,Cars,Buses_or_Coaches,Vans,HGVs,Other_Vehicles,Total_Vehicles_Involved,Fatal_Casualties,Serious_Casualties,Slight_Casualties,Total_Number_of_Casualties
