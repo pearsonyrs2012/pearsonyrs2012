@@ -19,7 +19,7 @@ WriteMakefile(
         'Dancer'     => 1.3100,
 		'LWP::UserAgent' => 6.04,
 		'LWP::Protocol::https' => 0,
-		'Template::Toolkit' => 0
+		'Template::Toolkit' => 2.24
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'yrs2012-*' },

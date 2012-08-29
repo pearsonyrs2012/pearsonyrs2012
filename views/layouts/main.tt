@@ -20,25 +20,33 @@
 			<h2 id="address"></h2>
 			<div id = "links" style="color:#000">
 			<ul>
-				<li class="<% IF Highligh.Highlevel %> highlight <% END %>">High Level</li> 
-				<a href= "2ndPAGE.html"> 
-					<img src="images/icons/high128.png" alt="High Levels" width="128" height="128" />
-				</a> 
+				<li class="<% IF Highlight.Highlevel %> highlight <% END %>">
+					High Level 
+					<a href= "2ndPAGE.html"> 
+						<img src="images/icons/high128.png" alt="High Levels" width="128" height="128" />
+					</a>
+				</li>
 				<hr></hr>
-				<li class="<% IF Highligh.Lowlevel %> highlight <% END %>">Low Level</li> 
-				<a href= "2ndPAGE.html">
-					<img src="images/icons/low128.png" alt="Low Levels" width="128" height="128" />
-				</a> 
+				<li class="<% IF Highlight.Lowlevel %> highlight <% END %>">
+					Low Level
+					<a href= "2ndPAGE.html">
+						<img src="images/icons/low128.png" alt="Low Levels" width="128" height="128" />
+					</a> 
+				</li> 
 				<hr></hr>
-				<li class="<% IF Highligh.Danger %> highlight <% END %>">Danger</li>  
-				<a href= "Page 3.html">
-					<img src="images/icons/danger128.png" alt="Danger Map" width="128" height="128" />
-				</a>
+				<li class="<% IF Highlight.Danger %> highlight <% END %>">
+					Danger
+					<a href= "Page 3.html">
+						<img src="images/icons/danger128.png" alt="Danger Map" width="128" height="128" />
+					</a>
+				</li>
 				<hr></hr>
-				<li class="<% IF Highligh.Newsfeeds %> highlight <% END %>">News Feeds</li>
-				<a href= "twitter.html">
-					<img src="images/icons/news128.png" alt="News Feeds" width="128" height="128" />
-				</a> 
+				<li class="<% IF Highlight.Newsfeeds %> highlight <% END %>">
+					News Feeds
+					<a href= "twitter.html">
+						<img src="images/icons/news128.png" alt="News Feeds" width="128" height="128" />
+					</a>
+				</li>				
 				<hr></hr>
 				<li>Settings</li>
 				<a href= "settingspage.html">
