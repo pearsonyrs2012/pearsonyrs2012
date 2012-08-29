@@ -1,5 +1,6 @@
 package yrs2012;
 use Dancer ':syntax';
+use datasets::accidents;
 use LWP::UserAgent;
 our $VERSION = '0.1';
 
@@ -166,7 +167,7 @@ get '/api/overview/:lat/:long/' => sub {
 	$item->{rawlevel} = $item->{level};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
-    $item = accident(param('lat'),param('long'));
+    $item = datasets::accidents::query(param('lat'),param('long'));
     return to_json $item if defined $item->{error};
     $item->{level} = ($item->{level} > $crossover) ? "1": "0";
     push @overview, $item;
@@ -191,31 +192,7 @@ sub pizza {
 	return {name => 'pizza', presentation_name => 'Pizza', level => $level / 5, results => $hash->{results} } ;
 }
 
-sub accident {
-	my ($lat,$long) = @_;
-	my $filepath = '/app/public/data/fatalaccidentdata.csv';
-	
-	open(my $file,$filepath) || (warn "could not open accidentdata.csv: $!" && send_error( {error => "could not get accedent data", code => $!},512));
-	my $line;
-	my @data;
-	while($line = <$file>) {
-	my @feilds = split(',',$line);
-	shift @feilds;
-	push @data,\@feilds;
-	}
-	#return \@data;
-	shift @data;
-	my $item;
-	my $count = 0;
-	for $item (@data) {
-		if ($long + 0.01 > $item->[2] && $item->[2] > $long - 0.01) {
-			if ($lat + 0.01 > $item->[3] && $item->[3] > $lat - 0.01) {
-			 $count++;
-		}
-		}
-	}
-	return {name => 'accidents', presentation_name => 'Accidents', level => $count /2 } ;
-}
+
    
 
 sub getfile {
