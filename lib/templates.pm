@@ -3,9 +3,9 @@ use Dancer ':syntax';
 use strict;
 use warnings;
 
-get qr{/index(\.html?)?}			=> sub { forward '/'; 				};
-get qr{/2[nN][dD]page(\.html?)?} 	=> sub { redirect '/overview' 301; 	};
-get '/geo' 							=> sub { send_file '/geo.html';		};
+get qr{/index(\.html?)?}						=> sub { forward '/'; 				};
+get qr{/2[nN][dD][pP][aA][gG][eE](\.html?)?} 	=> sub { redirect '/overview', 301; };
+get '/geo' 										=> sub { send_file '/geo.html';		};
 
 get '/' => sub {
 	return template 'index', {
@@ -32,3 +32,6 @@ get '/overview' => sub {
 						Settings => 0
 						}
 		} ;
+};
+warn 'templates loaded';
+1;
