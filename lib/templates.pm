@@ -5,8 +5,7 @@ use warnings;
 
 get '/' => sub {
 	return template 'index', {
-		Javascripts => '<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-		<!-- <script type="text/javascript" src="javascripts/soundmanager/script/soundmanager2.js"></script> !-->', 
+		Javascripts => '<!-- <script type="text/javascript" src="javascripts/soundmanager/script/soundmanager2.js"></script> !-->', 
 		Page => 'index',
 		Highlight => {
 						Highlevel => 0,

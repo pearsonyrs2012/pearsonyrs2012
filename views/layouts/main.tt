@@ -11,6 +11,7 @@
 		<!-- dont currently host jquery<script type="text/javascript">/* <![CDATA[ */
 		!window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.js"><\/script>')
 		/* ]]> */</script>-->
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<%Javascripts%>
 		<script type="text/javascript" src="javascripts/<% Page %>.js"></script>
 	</head>
